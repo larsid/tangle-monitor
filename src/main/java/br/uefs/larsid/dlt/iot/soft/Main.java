@@ -11,13 +11,17 @@ public final class Main {
 
   public static void main(String[] args) {
     System.out.println("Starting...");
-    LedgerReader ledgerReader = new LedgerReader(
+
+    String[] topics = { "sn", "tx" };
+
+    new LedgerReader(
       new ZMQServer(
         128,
         "tcp",
         "172.19.0.2",
         "5556",
-        "ZLGVEQ9JUZZWCZXLWVNTHBDX9G9KZTJP9VEERIIFHY9SIQKYBVAHIMLHXPQVE9IXFDDXNHQINXJDRPFDX"
+        "ZLGVEQ9JUZZWCZXLWVNTHBDX9G9KZTJP9VEERIIFHY9SIQKYBVAHIMLHXPQVE9IXFDDXNHQINXJDRPFDX",
+        topics
       )
     );
   }
