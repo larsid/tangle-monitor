@@ -8,8 +8,8 @@ import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
 
 /**
- * @author Allan Capistrano
- * @version 0.0.1
+ * @author Allan Capistrano, Antonio Crispim, Uellington Damasceno
+ * @version 0.0.2
  */
 public class ZMQServer implements Runnable {
 
@@ -24,7 +24,8 @@ public class ZMQServer implements Runnable {
     String socketProtocol,
     String socketURL,
     String socketPort,
-    String address
+    String address,
+    String[] topics
   ) {
     this.DLTInboundBuffer = new ArrayBlockingQueue(bufferSize);
     this.serverListener = ZMQ.context(1).socket(SocketType.SUB);
@@ -35,6 +36,11 @@ public class ZMQServer implements Runnable {
     System.out.println("Socket URL: " + this.socketURL);
 
     this.serverListener.connect(this.socketURL);
+
+    for (String topic : topics) {
+      this.subscribe(topic);
+    }
+
     this.serverThread = new Thread(this);
     this.serverThread.setName("CLIENT_TANGLE/ZMQ_SERVER");
     this.serverThread.start();
