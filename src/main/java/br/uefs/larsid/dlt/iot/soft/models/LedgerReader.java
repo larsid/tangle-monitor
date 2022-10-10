@@ -1,4 +1,4 @@
-package br.uefs.larsid.dlt.iot.soft.model;
+package br.uefs.larsid.dlt.iot.soft.models;
 
 import br.uefs.larsid.dlt.iot.soft.services.ILedgerReader;
 import br.uefs.larsid.dlt.iot.soft.services.ILedgerSubscriber;

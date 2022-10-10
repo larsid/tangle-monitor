@@ -1,7 +1,7 @@
 package br.uefs.larsid.dlt.iot.soft;
 
-import br.uefs.larsid.dlt.iot.soft.model.LedgerReader;
-import br.uefs.larsid.dlt.iot.soft.model.ZMQServer;
+import br.uefs.larsid.dlt.iot.soft.models.LedgerReader;
+import br.uefs.larsid.dlt.iot.soft.models.ZMQServer;
 
 /**
  * @author Allan Capistrano
