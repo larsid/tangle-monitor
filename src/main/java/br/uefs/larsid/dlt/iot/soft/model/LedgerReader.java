@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author Allan Capistrano
+ * @author Allan Capistrano, Antonio Crispim, Uellington Damasceno
  * @version 0.0.1
  */
 public class LedgerReader implements ILedgerReader, Runnable {
@@ -61,6 +61,7 @@ public class LedgerReader implements ILedgerReader, Runnable {
   public void run() {
     while (!this.DLTInboundMonitor.isInterrupted()) {
       try {
+        long start = System.currentTimeMillis();
         String receivedMessage = this.server.take();
 
         if (receivedMessage != null && receivedMessage.contains("/")) {
@@ -69,7 +70,11 @@ public class LedgerReader implements ILedgerReader, Runnable {
           String message = data[1];
           notifyAll(topic, message);
         }
+
+        long end = System.currentTimeMillis();
+        System.out.println("Response time (ms): " + (end - start));
       } catch (InterruptedException ex) {
+        System.out.println(ex);
         this.DLTInboundMonitor.interrupt();
       }
     }
@@ -79,10 +84,7 @@ public class LedgerReader implements ILedgerReader, Runnable {
     if (topic != null && !topic.isEmpty()) {
       Set<ILedgerSubscriber> subscribers = this.topics.get(topic);
       if (subscribers != null && !subscribers.isEmpty()) {
-        long start = System.currentTimeMillis();
         subscribers.forEach(sub -> sub.update(object));
-        long end = System.currentTimeMillis();
-        System.out.println("TEMPO DE RESPOSTA: " + (end - start));
       }
     }
   }
