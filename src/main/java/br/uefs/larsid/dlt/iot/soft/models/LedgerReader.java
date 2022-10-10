@@ -2,6 +2,7 @@ package br.uefs.larsid.dlt.iot.soft.models;
 
 import br.uefs.larsid.dlt.iot.soft.services.ILedgerReader;
 import br.uefs.larsid.dlt.iot.soft.services.ILedgerSubscriber;
+import br.uefs.larsid.dlt.iot.soft.utils.CsvWriter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -13,13 +14,20 @@ import java.util.Set;
  */
 public class LedgerReader implements ILedgerReader, Runnable {
 
+  /*-------------------------Constantes---------------------------------------*/
+  private static final String FILE_NAME = "tangle-monitor.csv";
+  /*--------------------------------------------------------------------------*/
+
   private Thread DLTInboundMonitor;
   private final Map<String, Set<ILedgerSubscriber>> topics;
   private final ZMQServer server;
+  private final CsvWriter csvWriter;
+  private int temp = 0;
 
   public LedgerReader(ZMQServer server) {
     this.topics = new HashMap();
     this.server = server;
+    this.csvWriter = new CsvWriter(FILE_NAME);
 
     if (this.DLTInboundMonitor == null) {
       this.DLTInboundMonitor = new Thread(this);
@@ -73,6 +81,19 @@ public class LedgerReader implements ILedgerReader, Runnable {
 
         long end = System.currentTimeMillis();
         System.out.println("Response time (ms): " + (end - start));
+
+        String[] data = { String.valueOf(1), String.valueOf(end - start) };
+
+        this.csvWriter.writeData(data);
+
+        /**
+         * Ver qual o lugar certo para fechar o arquivo e salvar as informações.
+         */
+        if (temp == 3) {
+          this.csvWriter.closeFile();
+        }
+
+        temp++;
       } catch (InterruptedException ex) {
         System.out.println(ex);
         this.DLTInboundMonitor.interrupt();
