@@ -22,7 +22,7 @@ public class LedgerReader implements ILedgerReader, Runnable {
   private final Map<String, Set<ILedgerSubscriber>> topics;
   private final ZMQServer server;
   private final CsvWriter csvWriter;
-  private int temp = 0;
+  private int index = 1;
 
   public LedgerReader(ZMQServer server) {
     this.topics = new HashMap();
@@ -82,19 +82,14 @@ public class LedgerReader implements ILedgerReader, Runnable {
         long end = System.currentTimeMillis();
         System.out.println("Response time (ms): " + (end - start));
 
-        String[] data = { String.valueOf(1), String.valueOf(end - start) };
+        String[] data = { String.valueOf(index), String.valueOf(end - start) };
 
         this.csvWriter.writeData(data);
 
-        /**
-         * Ver qual o lugar certo para fechar o arquivo e salvar as informações.
-         */
-        if (temp == 3) {
-          this.csvWriter.closeFile();
-        }
-
-        temp++;
+        index++;
       } catch (InterruptedException ex) {
+        this.csvWriter.closeFile();
+
         System.out.println(ex);
         this.DLTInboundMonitor.interrupt();
       }
