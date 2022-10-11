@@ -29,7 +29,7 @@ public class CsvWriter {
       FileWriter outputFile = new FileWriter(file);
       this.writer = new CSVWriter(outputFile);
 
-      String[] header = { "Tempo", "Tempo de resposta (s)" };
+      String[] header = { "Indice", "Tempo de resposta (ms)" };
       writer.writeNext(header);
     } catch (IOException ioe) {
       System.err.println(ioe);
