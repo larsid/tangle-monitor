@@ -1,6 +1,12 @@
 FROM openjdk:8
 LABEL maintainder="AllanCapistrano <asantos@ecomp.uefs.br>"
 
+ENV ZMQ_SOCKET_PROTOCOL=tcp \
+    ZMQ_SOCKET_URL=zmq.devnet.iota.org \
+    ZMQ_SOCKET_PORT=5556 \
+    ADDRESS=ZLGVEQ9JUZZWCZXLWVNTHBDX9G9KZTJP9VEERIIFHY9SIQKYBVAHIMLHXPQVE9IXFDDXNHQINXJDRPFDX \
+    BUFFER_SIZE=128
+
 ADD target/tangle-monitor-0.0.1-jar-with-dependencies.jar bin/tangle-monitor-0.0.1-jar-with-dependencies.jar
 ADD tangle-monitor.sh tangle-monitor.sh
 
