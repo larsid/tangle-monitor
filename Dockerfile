@@ -7,7 +7,7 @@ ENV ZMQ_SOCKET_PROTOCOL=tcp \
     ADDRESS=ZLGVEQ9JUZZWCZXLWVNTHBDX9G9KZTJP9VEERIIFHY9SIQKYBVAHIMLHXPQVE9IXFDDXNHQINXJDRPFDX \
     BUFFER_SIZE=128
 
-ADD target/tangle-monitor-0.0.1-jar-with-dependencies.jar bin/tangle-monitor-0.0.1-jar-with-dependencies.jar
+ADD target/tangle-monitor-1.0.0-jar-with-dependencies.jar bin/tangle-monitor-1.0.0-jar-with-dependencies.jar
 ADD tangle-monitor.sh tangle-monitor.sh
 
 RUN chmod +x tangle-monitor.sh
