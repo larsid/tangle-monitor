@@ -7,6 +7,7 @@ import java.io.IOException;
 
 /**
  * @author Allan Capistrano, AmanSingh2210
+ * @version 1.0.0
  */
 public class CsvWriter {
 
@@ -18,7 +19,7 @@ public class CsvWriter {
 
   /**
    * Método construtor.
-   * 
+   *
    * @param fileName String - Nome do arquivo .csv.
    */
   public CsvWriter(String fileName) {
@@ -36,16 +37,21 @@ public class CsvWriter {
   }
 
   /**
-   * Escreve os dados no arquivo .csv.
-   * 
+   * Escreve e salva os dados no arquivo .csv.
+   *
    * @param data String[] - Dados que serão gravados no arquivo.
    */
   public void writeData(String[] data) {
-    this.writer.writeNext(data);
+    try {
+      this.writer.writeNext(data);
+      this.writer.flush();
+    } catch (IOException ioe) {
+      System.err.println(ioe);
+    }
   }
 
   /**
-   * Salvar e fecha o arquivo .csv.
+   * Fecha o arquivo .csv.
    */
   public void closeFile() {
     try {
