@@ -30,6 +30,18 @@ public class CLI {
     return getArgInList("-adr", args);
   }
 
+  public static Optional<String> getDltProtocol(String... args) {
+    return getArgInList("-dpr", args);
+  }
+
+  public static Optional<String> getDltURL(String... args) {
+    return getArgInList("-dur", args);
+  }
+
+  public static Optional<String> getDltPort(String... args) {
+    return getArgInList("-dpt", args);
+  }
+
   public static boolean hasParam(String arg, String... args) {
     return Arrays.asList(args).indexOf(arg) != -1;
   }
