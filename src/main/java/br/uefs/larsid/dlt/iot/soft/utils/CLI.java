@@ -42,6 +42,14 @@ public class CLI {
     return getArgInList("-dpt", args);
   }
 
+  public static Optional<String> getQueryType(String... args) {
+    return getArgInList("-qrt", args);
+  }
+
+  public static Optional<String> getTag(String... args) {
+    return getArgInList("-tag", args);
+  }
+
   public static boolean hasParam(String arg, String... args) {
     return Arrays.asList(args).indexOf(arg) != -1;
   }
