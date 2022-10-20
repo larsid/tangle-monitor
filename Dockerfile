@@ -8,7 +8,9 @@ ENV ZMQ_SOCKET_PROTOCOL=tcp \
     BUFFER_SIZE=128 \
     DLT_PROTOCOL=https \
     DLT_URL=nodes.devnet.iot.org \
-    DLT_PORT=443
+    DLT_PORT=443 \
+    QUERY_TYPE=api \
+    TAG=cloud/c1
 
 ADD target/tangle-monitor-1.1.0-jar-with-dependencies.jar bin/tangle-monitor-1.1.0-jar-with-dependencies.jar
 ADD tangle-monitor.sh tangle-monitor.sh
