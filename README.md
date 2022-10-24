@@ -47,7 +47,7 @@ Você pode utilizar a nossa imagem que está disponível no [Docker Hub](https:/
 |ZMQ_SOCKET_PROTOCOL|Define qual é o protocolo do sistema de mensageria que utilizado pela rede para notificar o estado das transações.|tcp|
 |ZMQ_SOCKET_URL|Define qual é a URL do sistema de mensageria que utilizado pela rede para notificar o estado das transações.|zmq.devnet.iota.org|
 |ZMQ_SOCKET_PORT|Define qual é a porta do sistema de mensageria que utilizado pela rede para notificar o estado das transações.|5556|
-|ADDRESS|Define o endereço da transação.|[Verificar aqui](https://github.com/AllanCapistrano/tangle-monitor/blob/main/src/main/resources/br/uefs/larsid/dlt/iot/soft/tangle-monitor.properties)|
+|ADDRESS|Define o endereço da transação.|[Verificar aqui](https://github.com/larsid/tangle-monitor/blob/main/src/main/resources/br/uefs/larsid/dlt/iot/soft/tangle-monitor.properties)|
 |BUFFER_SIZE|Define o tamanho máximo do `buffer` que armazena as transações que serão enviadas para a rede.|128|
 |DLT_PROTOCOL|Define qual é o tipo de protocolo utilizado pelo cliente da API.|https|
 |DLT_URL|Define qual é a URL do nó da rede que o cliente deve se conectar.|nodes.devnet.iot.org|
@@ -81,7 +81,7 @@ docker run -it -e ZMQ_SOCKET_URL=0.0.0.0 -e DLT_PROTOCOL=http -e DLT_URL=0.0.0.0
 |-tag|TAG que será utilizada para as consultas utilizando a *IOTA API*.|cloud/c1|
 
 ###### Obs<sup>4</sup>: Os tipos aceitos são `api` ou `zmq`. ######
-###### Obs: Também é possível alterar essas configurações através do arquivo [tangle-monitor.properties](https://github.com/AllanCapistrano/tangle-monitor/blob/main/src/main/resources/br/uefs/larsid/dlt/iot/soft/tangle-monitor.properties) ######
+###### Obs: Também é possível alterar essas configurações através do arquivo [tangle-monitor.properties](https://github.com/larsid/tangle-monitor/blob/main/src/main/resources/br/uefs/larsid/dlt/iot/soft/tangle-monitor.properties) ######
 
 Após compilar o projeto, basta utilizar os parâmetros acima.
 
