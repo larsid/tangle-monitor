@@ -1,5 +1,5 @@
 # tangle-monitor
-Faz o monitoramento do tempo de resposta em milissegundos (ms) da *blockchain* Tangle através da *IOTA API* ou do *ZQM*, e escreve em um arquivo `.csv` .
+Faz o monitoramento do tempo de resposta, em milissegundos (ms), de consultas na *blockchain* Tangle, através da *IOTA API* ou do *ZQM*, e escreve em um arquivo `.csv` .
 
 ## Como utilizar
 Recomendamos a utilização do Docker, mas tambpem é possível executar o projeto através do arquivo `.jar`.
