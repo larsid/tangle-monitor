@@ -80,7 +80,7 @@ public class LedgerReader implements ILedgerReader, Runnable {
         }
 
         long end = System.currentTimeMillis();
-        System.out.println("Response time (ms): " + (end - start));
+        System.out.println("ZMQ Response time (ms): " + (end - start));
 
         String[] data = { String.valueOf(index), String.valueOf(end - start) };
 

@@ -1,6 +1,7 @@
 package br.uefs.larsid.dlt.iot.soft;
 
 import br.uefs.larsid.dlt.iot.soft.models.LedgerReader;
+import br.uefs.larsid.dlt.iot.soft.models.ReadApi;
 import br.uefs.larsid.dlt.iot.soft.models.ZMQServer;
 import br.uefs.larsid.dlt.iot.soft.utils.CLI;
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.util.Properties;
 
 /**
  * @author Allan Capistrano
- * @version 0.0.1
+ * @version 1.0.1
  */
 public final class Main {
 
@@ -19,6 +20,11 @@ public final class Main {
   private static String socketURL;
   private static String socketPort;
   private static String address;
+  private static String dltProtocol;
+  private static String dltURL;
+  private static String dltPort;
+  private static String queryType;
+  private static String tag;
 
   /*--------------------------------------------------------------------------*/
 
@@ -29,16 +35,24 @@ public final class Main {
 
     readProperties(args);
 
-    new LedgerReader(
-      new ZMQServer(
-        Integer.parseInt(bufferSize),
-        socketProtocol,
-        socketURL,
-        socketPort,
-        address,
-        topics
-      )
-    );
+    if (queryType.equals("api")) {
+      new ReadApi(dltProtocol, dltURL, Integer.parseInt(dltPort), tag);
+    } else if (queryType.equals("zmq")) {
+      new LedgerReader(
+        new ZMQServer(
+          Integer.parseInt(bufferSize),
+          socketProtocol,
+          socketURL,
+          socketPort,
+          address,
+          topics
+        )
+      );
+    } else {
+      System.err.println(
+        "Error! unknown query type, you should try 'api' or 'zmq'."
+      );
+    }
   }
 
   /**
@@ -73,10 +87,19 @@ public final class Main {
         CLI.getSocketPort(args).orElse(props.getProperty("socketPort"));
 
       address = CLI.getAddress(args).orElse(props.getProperty("address"));
+
+      dltProtocol =
+        CLI.getDltProtocol(args).orElse(props.getProperty("dltProtocol"));
+
+      dltURL = CLI.getDltURL(args).orElse(props.getProperty("dltURL"));
+
+      dltPort = CLI.getDltPort(args).orElse(props.getProperty("dltPort"));
+
+      queryType = CLI.getQueryType(args).orElse(props.getProperty("queryType"));
+
+      tag = CLI.getTag(args).orElse(props.getProperty("tag"));
     } catch (IOException ex) {
-      printlnDebug(
-        "Sorry, unable to find sensors.json or not create pesistence file."
-      );
+      printlnDebug("Sorry, unable to find tangle-monitor.properties.");
     }
   }
 
