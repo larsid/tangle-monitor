@@ -6,7 +6,7 @@ Recomendamos a utilização do Docker, mas tambpem é possível executar o proje
 
 ### Via Docker
 
-Você pode utilizar a nossa imagem que está disponível no [Docker Hub](https://hub.docker.com/repository/docker/larsid/tangle-monitor), ou fazer o *build* da imagem manualmente.
+Você pode utilizar a nossa imagem que está disponível no [Docker Hub](https://hub.docker.com/r/larsid/tangle-monitor), ou fazer o *build* da imagem manualmente.
 
 #### Build da imagem Docker:
 
