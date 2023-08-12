@@ -68,7 +68,7 @@ public final class Main {
         )
     ) {
       if (input == null) {
-        printlnDebug("Sorry, unable to find controller.properties.");
+        printlnDebug("Sorry, unable to find tangle-monitor.properties.");
         return;
       }
 
