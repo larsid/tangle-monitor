@@ -2,7 +2,7 @@
 Faz o monitoramento do tempo de resposta, em milissegundos (ms), de consultas na *blockchain* Tangle, através da *IOTA API* ou do *ZMQ*, e escreve em um arquivo `.csv` .
 
 ## Como utilizar
-Recomendamos a utilização do Docker, mas tambpem é possível executar o projeto através do arquivo `.jar`.
+Recomendamos a utilização do Docker, mas também é possível executar o projeto através do arquivo `.jar`.
 
 ### Via Docker
 
@@ -53,7 +53,7 @@ Você pode utilizar a nossa imagem que está disponível no [Docker Hub](https:/
 |DLT_URL|Define qual é a URL do nó da rede que o cliente deve se conectar.|nodes.devnet.iot.org|
 |DLT_PORT|Define a porta.|443|
 |QUERY_TYPE<sup>3</sup>|Tipo de consulta para o monitoramento.|api|
-|TAG|TAG que será utilizada para as consultas utilizando a *IOTA API*.|cloud/c1|
+|TAG|TAG que será utilizada para as consultas utilizando a *IOTA API*.|clientTag|
 
 ###### Obs<sup>3</sup>: Os tipos aceitos são `api` ou `zmq`. ######
 
